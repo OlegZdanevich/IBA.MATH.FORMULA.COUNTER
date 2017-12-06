@@ -1,37 +1,53 @@
 package com.iba.project.data.file;
 
-import org.apache.log4j.Logger;
+import com.iba.project.loggin.exceptions.LoggerForExceptions;
 
 import java.io.*;
 
 public class Loader {
-    private static final Logger log = Logger.getLogger(Loader.class);
+    public static StringBuilder loadData(String filename)
+    {
+        File file=null;
+        FileReader fileReader = null;
 
-    public static StringBuilder loadData(String filename) {
-        File file = null;
+        StringBuilder result=new StringBuilder("");
+        try {
+            file = new File("data/" + filename);
 
-
-        file = new File("data/" + filename);
-
-
-        StringBuilder result = new StringBuilder("");
-        try (FileReader fileReader = new FileReader(file); BufferedReader reader = new BufferedReader(fileReader)) {
+            fileReader = new FileReader(file);
+            BufferedReader reader = new BufferedReader(fileReader);
 
             String line = reader.readLine();
 
+
             while (line != null) {
-                result.append(line + "\n");
+                result.append(line+"\n");
 
                 line = reader.readLine();
             }
 
-        } catch (FileNotFoundException exception) {
-            log.trace("There is no file in this directory", exception);
+        } catch (FileNotFoundException exception)
+
+        {
+            LoggerForExceptions.fileNotFoundException(exception);
         } catch (IOException exception)
 
         {
-            log.trace("Failed to read file", exception);
+            LoggerForExceptions.ReadFileException(exception);
         }
+        finally {
+            try{
+
+                if(fileReader!=null)
+                    fileReader.close();
+            }
+            catch(IOException exception){
+
+                LoggerForExceptions.ReadFileException(exception);
+            }
+
+        }
+
         return result;
 
     }
