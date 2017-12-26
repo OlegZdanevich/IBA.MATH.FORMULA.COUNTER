@@ -1,14 +1,21 @@
 package com.iba.project.data;
 
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class NodesWrapper
 {
-    ArrayList<Node> data=null;
+    List<Node> data=null;
 
     public NodesWrapper()
     {
         data=new ArrayList<>();
+    }
+
+    public NodesWrapper(List<Node> data)
+    {
+        this.data=data;
     }
 
     public void append(Node node)
