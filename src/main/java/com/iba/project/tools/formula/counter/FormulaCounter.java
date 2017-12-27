@@ -3,7 +3,7 @@ package com.iba.project.tools.formula.counter;
 import java.util.Stack;
 
 public class FormulaCounter {
-    public static double doParse(String input) {
+    public static double doParse(StringBuilder input) {
         Stack<Double> numberStack = new Stack<>();
 
         StringBuilder numberKeeper = new StringBuilder("");

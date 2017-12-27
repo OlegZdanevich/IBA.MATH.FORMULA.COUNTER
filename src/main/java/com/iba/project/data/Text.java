@@ -12,4 +12,5 @@ public class Text implements Node {
     public StringBuilder count() {
         return text;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.iba.project.data;
 
+import com.iba.project.tools.formula.counter.FormulaCounter;
 import com.iba.project.tools.formula.parser.Parser;
 import com.iba.project.tools.formula.parser.VariableCounter;
 
@@ -19,11 +20,11 @@ public class Formula implements Node {
 
         Parser.parseExpression(formula);
 
-        StringBuilder result = new StringBuilder("");//Count
-        //ToDO
+        StringBuilder result = new StringBuilder(String.valueOf(FormulaCounter.doParse(formula)));
 
         return result;
     }
+
 
     public StringBuilder getFormula() {
         return formula;
